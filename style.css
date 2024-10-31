@@ -14,12 +14,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
     text-align: center;
 }
 
 .header {
     padding: 20px;
+    max-width: 600px;
+    margin: auto;
 }
 
 h1 {
@@ -27,20 +28,22 @@ h1 {
     color: #3C2F2F;
 }
 
-p {
+pre {
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+input[type="text"] {
+    padding: 10px;
     font-size: 1em;
-    margin-bottom: 15px;
+    margin-top: 10px;
 }
 
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#cacaButton {
-    padding: 15px 30px;
-    font-size: 1.2em;
+button {
+    padding: 10px 20px;
+    font-size: 1em;
     color: #FFF;
     background-color: #8B4513;
     border: none;
@@ -48,11 +51,16 @@ p {
     cursor: pointer;
 }
 
-#cacaButton:hover {
+button:hover {
     background-color: #A0522D;
 }
 
-/* Style des petits cacas */
+.hiddenText {
+    color: #FFEBCC; /* Même couleur que le fond */
+    user-select: text; /* Autorise la sélection du texte caché */
+}
+
+/* Caca style */
 .caca {
     position: absolute;
     font-size: 2em;
@@ -64,16 +72,12 @@ p {
     100% { opacity: 0; transform: translateY(-30px); }
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 1.5em;
-    }
-    p {
-        font-size: 0.9em;
-    }
-    #cacaButton {
-        padding: 10px 20px;
-        font-size: 1em;
-    }
+.codeBox {
+    font-family: monospace;
+    background-color: #FFF;
+    padding: 15px;
+    border: 1px solid #CCC;
+    margin: 20px 0;
+    max-width: 90%;
+    overflow-x: auto;
 }
