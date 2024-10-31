@@ -1,0 +1,79 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFEBCC;
+    color: #5A3E36;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+.header {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    color: #3C2F2F;
+}
+
+p {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cacaButton {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: #FFF;
+    background-color: #8B4513;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#cacaButton:hover {
+    background-color: #A0522D;
+}
+
+/* Style des petits cacas */
+.caca {
+    position: absolute;
+    font-size: 2em;
+    animation: fadeOut 2s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-30px); }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    p {
+        font-size: 0.9em;
+    }
+    #cacaButton {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
