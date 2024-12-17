@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot Informatique Responsable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Thèmes disponibles</h2>
+        <!-- Boutons thèmes -->
+        <button onclick="askTheme('Comment réduire ma consommation d\\'énergie ?')">Énergie</button>
+        <button onclick="askTheme('Comment protéger mes données personnelles ?')">Sécurité</button>
+        <button onclick="askTheme('Comment est-ce que le numérique impact l\\'environnement ?')">Environnement</button>
+        <button onclick="askTheme('Comment réduire mes déchets électroniques ?')">Déchets</button>
+        <button onclick="askTheme('Comment trouver un équilibre sain avec mes appareils numériques ?')">Équilibre</button>
+        <button onclick="askTheme('Quels sont les aspects éthiques du numérique ?')">Éthique</button>
+        <button onclick="askTheme('Quels sont les avantages des logiciels libres ?')">Logiciels Libres</button>
+        <button onclick="askTheme('Comment rendre l\\'informatique plus accessible à tous ?')">Accessibilité</button>
+        <button onclick="askTheme('Comment adopter une sobriété numérique au quotidien ?')">Sobriété</button>
+        <button onclick="askTheme('Quelles sont les responsabilités sociales des acteurs du numérique ?')">Responsabilité</button>
+    </div>
+    <div class="chat-container">
+        <div class="chat-header">
+            Chatbot Informatique Responsable
+        </div>
+        <div class="messages" id="messages"></div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Tapez votre question...">
+            <button onclick="sendQuestion()">Envoyer</button>
+        </div>
+    </div>
+
+    <script>
+        // Remplacez par l'URL de votre backend sur Render, par ex : https://votre-app.onrender.com/ask
+        const API_URL = "https://votre-app.onrender.com/ask"; 
+
+        function appendMessage(role, text) {
+            const msgContainer = document.getElementById('messages');
+            const div = document.createElement('div');
+            div.className = 'message ' + role;
+            div.textContent = text;
+            msgContainer.appendChild(div);
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+
+        function sendQuestion() {
+            const userInput = document.getElementById('userInput');
+            const question = userInput.value.trim();
+            if (!question) return;
+            appendMessage('user', question);
+            userInput.value = '';
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({question})
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendMessage('assistant', data.answer);
+            })
+            .catch(err => console.error(err));
+        }
+
+        function askTheme(question) {
+            appendMessage('user', question);
+            fetch(API_URL, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({question})
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendMessage('assistant', data.answer);
+            })
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
